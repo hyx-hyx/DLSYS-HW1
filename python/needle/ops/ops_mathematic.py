@@ -119,7 +119,8 @@ class EWiseDiv(TensorOp):
 
     def gradient(self, out_grad, node):
         ### BEGIN YOUR SOLUTION
-        raise NotImplementedError()
+        a,b=node.inputs
+        return out_grad/b,-a*out_grad/b/b
         ### END YOUR SOLUTION
 
 
@@ -138,7 +139,7 @@ class DivScalar(TensorOp):
 
     def gradient(self, out_grad, node):
         ### BEGIN YOUR SOLUTION
-        raise NotImplementedError()
+        return out_grad/self.scalar
         ### END YOUR SOLUTION
 
 
@@ -252,7 +253,7 @@ class Negate(TensorOp):
 
     def gradient(self, out_grad, node):
         ### BEGIN YOUR SOLUTION
-        raise NotImplementedError()
+        return -1*out_grad
         ### END YOUR SOLUTION
 
 
@@ -268,7 +269,7 @@ class Log(TensorOp):
 
     def gradient(self, out_grad, node):
         ### BEGIN YOUR SOLUTION
-        raise NotImplementedError()
+        return array_api.divide(out_grad,node.inputs)[0]
         ### END YOUR SOLUTION
 
 
@@ -284,7 +285,7 @@ class Exp(TensorOp):
 
     def gradient(self, out_grad, node):
         ### BEGIN YOUR SOLUTION
-        raise NotImplementedError()
+        return Tensor.make_from_op(self,node.inputs)
         ### END YOUR SOLUTION
 
 
