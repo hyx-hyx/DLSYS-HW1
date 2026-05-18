@@ -80,7 +80,7 @@ class EWisePow(TensorOp):
     def gradient(self, out_grad, node):
         ### BEGIN YOUR SOLUTION
         lhs,rhs=node.inputs
-        return rhs*lhs*out_grad
+        return rhs*out_grad,lhs*out_grad
         ### END YOUR SOLUTION
 
 def power(a, b):
@@ -100,7 +100,8 @@ class PowerScalar(TensorOp):
 
     def gradient(self, out_grad, node):
         ### BEGIN YOUR SOLUTION
-        raise NotImplementedError()
+        v=node.inputs
+        return self.scalar*array_api.pow(v,self.scalar-1)[0]*out_grad
         ### END YOUR SOLUTION
 
 
